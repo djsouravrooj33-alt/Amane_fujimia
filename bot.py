@@ -135,6 +135,9 @@ async def ifsc_cmd(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 # ========= MAIN =========
 def main():
+    # Flask thread start হবে এখানে
+    Thread(target=run).start()
+
     bot = Application.builder().token(BOT_TOKEN).build()
 
     bot.add_handler(CommandHandler("help", help_cmd))
@@ -144,7 +147,7 @@ def main():
     bot.add_handler(CommandHandler("upi", upi_cmd))
     bot.add_handler(CommandHandler("ifsc", ifsc_cmd))
 
-    print("🤖 Bot Started")
+    print("🤖 Bot Started Successfully")
     bot.run_polling()
 
 if __name__ == "__main__":
